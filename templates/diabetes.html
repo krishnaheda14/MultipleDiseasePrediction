@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Diabetes Prediction Form</h1>
+
+<form method="post" action="{{ url_for('diabetes_prediction') }}">
+    <label for="Pregnancies">Number of Pregnancies:</label>
+    <input type="text" id="Pregnancies" name="Pregnancies" required>
+
+    <label for="Glucose">Glucose Level:</label>
+    <input type="text" id="Glucose" name="Glucose" required>
+
+    <label for="BloodPressure">Blood Pressure value:</label>
+    <input type="text" id="BloodPressure" name="BloodPressure" required>
+
+    <label for="SkinThickness">Skin Thickness value:</label>
+    <input type="text" id="SkinThickness" name="SkinThickness" required><br>
+
+    <label for="Insulin">Insulin Level:</label>
+    <input type="text" id="Insulin" name="Insulin" required><br>
+
+    <label for="BMI">BMI value:</label>
+    <input type="text" id="BMI" name="BMI" required><br>
+
+    <label for="DiabetesPedigreeFunction">Diabetes Pedigree Function value:</label>
+    <input type="text" id="DiabetesPedigreeFunction" name="DiabetesPedigreeFunction" required><br>
+
+    <label for="Age">Age of the Person:</label>
+    <input type="text" id="Age" name="Age" required><br>
+
+    <input type="submit" value="Predict">
+</form>
+
+</body>
+</html>

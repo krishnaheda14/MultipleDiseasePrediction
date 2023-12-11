@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Heart Disease Prediction Form</h1>
+
+<form method="post" action="{{ url_for('heart_disease_prediction') }}">
+    <label for="Age">Age:</label>
+    <input type="text" id="Age" name="Age" required>
+
+    <label for="Sex">Sex (0 = female, 1 = male):</label>
+    <input type="text" id="Sex" name="Sex" required>
+
+    <label for="ChestPainType">Chest Pain Type (cp):</label>
+    <input type="text" id="ChestPainType" name="ChestPainType" required>
+
+    <label for="RestingBloodPressure">Resting Blood Pressure (trestbps):</label>
+    <input type="text" id="RestingBloodPressure" name="RestingBloodPressure" required>
+
+    <label for="Cholesterol">Cholesterol Level (chol):</label>
+    <input type="text" id="Cholesterol" name="Cholesterol" required>
+
+    <label for="FastingBloodSugar">Fasting Blood Sugar (fbs):</label>
+    <input type="text" id="FastingBloodSugar" name="FastingBloodSugar" required>
+
+    <label for="RestECG">Resting Electrocardiographic Results (restecg):</label>
+    <input type="text" id="RestECG" name="RestECG" required>
+
+    <label for="MaxHeartRate">Max Heart Rate Achieved (thalach):</label>
+    <input type="text" id="MaxHeartRate" name="MaxHeartRate" required>
+
+    <label for="ExerciseAngina">Exercise-Induced Angina (exang):</label>
+    <input type="text" id="ExerciseAngina" name="ExerciseAngina" required>
+
+    <label for="STDepression">ST Depression Induced by Exercise (oldpeak):</label>
+    <input type="text" id="STDepression" name="STDepression" required>
+
+    <label for="Slope">Slope of the Peak Exercise ST Segment (slope):</label>
+    <input type="text" id="Slope" name="Slope" required>
+
+    <label for="NumVessels">Number of Major Vessels Colored by Fluoroscopy (ca):</label>
+    <input type="text" id="NumVessels" name="NumVessels" required>
+
+    <label for="Thalassemia">Thalassemia (thal):</label>
+    <input type="text" id="Thalassemia" name="Thalassemia" required>
+
+    <input type="submit" value="Predict">
+</form>
+
+</body>
+</html>
