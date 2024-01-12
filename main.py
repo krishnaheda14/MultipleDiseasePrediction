@@ -14,7 +14,7 @@ app = Flask(__name__, template_folder='templates')
 # Loading the saved models
 diabetes_model = pickle.load(open('C:/Users/Krishna/PycharmProjects/EDAIProject/models/diabetes_model.sav', 'rb'))
 heart_disease_model = pickle.load(open('C:/Users/Krishna/PycharmProjects/EDAIProject/models/heart_disease_model.sav', 'rb'))
-parkinsons_model = pickle.load(open('C:/Users/Krishna/PycharmProjects/EDAIProject/models/parkinsons_model.sav', 'rb'))
+cancer_model = pickle.load(open('C:/Users/Krishna/PycharmProjects/EDAIProject/models/cancer_model.sav', 'rb'))
 
 @app.route('/')
 def home():
@@ -69,7 +69,7 @@ def heart_disease_prediction():
 
         if heart_prediction[0] == 1:
             result = 'Heart Disease Detected'
-            detection_warning = ''
+            detection_warning = 'This prediction maybe inaccurate , Please consult a doctor immediately'
         else:
             result = 'Heart Disease not detected'
             detection_warning = ''
@@ -78,46 +78,66 @@ def heart_disease_prediction():
 
     return render_template('heart.html')
 
-@app.route('/parkinsons')
-def parkinsons_prediction():
+@app.route('/cancer', methods=['GET', 'POST'])
+def cancer_prediction():
     if request.method == 'POST':
-        fo = request.form['fo']
-        fhi = request.form['fhi']
-        flo = request.form['flo']
-        Jitter_percent = request.form['Jitter_percent']
-        Jitter_Abs = request.form['Jitter_Abs']
-        RAP = request.form['RAP']
-        PPQ = request.form['PPQ']
-        DDP = request.form['DDP']
-        Shimmer = request.form['Shimmer']
-        Shimmer_dB = request.form['Shimmer_dB']
-        APQ3 = request.form['APQ3']
-        APQ5 = request.form['APQ5']
-        APQ = request.form['APQ']
-        DDA = request.form['DDA']
-        NHR = request.form['NHR']
-        HNR = request.form['HNR']
-        RPDE = request.form['RPDE']
-        DFA = request.form['DFA']
-        spread1 = request.form['spread1']
-        spread2 = request.form['spread2']
-        D2 = request.form['D2']
-        PPE = request.form['PPE']
+        # Extract input values from the form
+        radius_mean = float(request.form['radius_mean'])
+        texture_mean = float(request.form['texture_mean'])
+        perimeter_mean = float(request.form['perimeter_mean'])
+        area_mean = float(request.form['area_mean'])
+        smoothness_mean = float(request.form['smoothness_mean'])
+        compactness_mean = float(request.form['compactness_mean'])
+        concavity_mean = float(request.form['concavity_mean'])
+        concave_points_mean = float(request.form['concave_points_mean'])
+        symmetry_mean = float(request.form['symmetry_mean'])
+        fractal_dimension_mean = float(request.form['fractal_dimension_mean'])
+        radius_se = float(request.form['radius_se'])
+        texture_se = float(request.form['texture_se'])
+        perimeter_se = float(request.form['perimeter_se'])
+        area_se = float(request.form['area_se'])
+        smoothness_se = float(request.form['smoothness_se'])
+        compactness_se = float(request.form['compactness_se'])
+        concavity_se = float(request.form['concavity_se'])
+        concave_points_se = float(request.form['concave_points_se'])
+        symmetry_se = float(request.form['symmetry_se'])
+        fractal_dimension_se = float(request.form['fractal_dimension_se'])
+        radius_worst = float(request.form['radius_worst'])
+        texture_worst = float(request.form['texture_worst'])
+        perimeter_worst = float(request.form['perimeter_worst'])
+        area_worst = float(request.form['area_worst'])
+        smoothness_worst = float(request.form['smoothness_worst'])
+        compactness_worst = float(request.form['compactness_worst'])
+        concavity_worst = float(request.form['concavity_worst'])
+        concave_points_worst = float(request.form['concave_points_worst'])
+        symmetry_worst = float(request.form['symmetry_worst'])
+        fractal_dimension_worst = float(request.form['fractal_dimension_worst'])
 
-        parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP,
-                                                           Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE,
-                                                           DFA, spread1, spread2, D2, PPE]])
+        # Create an input array
+        input_data = np.array([[radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean,
+                                compactness_mean, concavity_mean, concave_points_mean, symmetry_mean,
+                                fractal_dimension_mean, radius_se, texture_se, perimeter_se, area_se,
+                                smoothness_se, compactness_se, concavity_se, concave_points_se, symmetry_se,
+                                fractal_dimension_se, radius_worst, texture_worst, perimeter_worst, area_worst,
+                                smoothness_worst, compactness_worst, concavity_worst, concave_points_worst,
+                                symmetry_worst, fractal_dimension_worst]])
 
-        if parkinsons_prediction[0] == 1:
-            result = 'Parkinsons Disease Detected'
+        # Make predictions using the cancer model
+        cancer_prediction = cancer_model.predict(input_data)
+
+        # Determine the result message
+        if cancer_prediction[0] == 1:
+            result = 'Cancer Detected'
             detection_warning = ''
         else:
-            result = 'Parkinsons Disease not detected'
-            detection_warning = ''
+            result = 'Cancer not detected'
+            detection_warning = 'Please consult a doctor immediately'
 
-        return render_template('result.html', disease_detected=parkinsons_prediction[0], disease_name='Parkinsons Disease', detection_warning=detection_warning)
+        # Render the result template with the prediction information
+        return render_template('result.html', disease_detected=cancer_prediction[0], disease_name='Cancer', detection_warning=detection_warning)
 
-    return render_template('parkinsons.html')
+    # Render the cancer prediction form template for GET requests
+    return render_template('cancer.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

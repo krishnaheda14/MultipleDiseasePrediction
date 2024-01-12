@@ -20,5 +20,4 @@ print(classification_report(y_test,y_pred))
 # Save the trained model
 pickle.dump(model, open('C:/Users/Krishna/PycharmProjects/EDAIProject/models/cancer_model.sav', 'wb'))
 
-#print("Cancer disease model trained and saved.")
-print(classification_report(y_test,y_pred))
+print("Cancer disease model trained and saved.")
