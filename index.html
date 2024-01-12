@@ -1,1 +1,86 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Disease Prediction System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            text-align: center;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	        background-size: 400% 400%;
+	        animation: gradient 15s ease infinite;
+	        height: 200vh;
+
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        div {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            font-size :30px;
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h1>VitalSense Prognosis</h1>
+
+<div>
+    <h2>Disease Prediction Options</h2>
+    <ul>
+        <li><a href="{{ url_for('diabetes_prediction') }}">Diabetes Prediction</a></li>
+        <li><a href="{{ url_for('heart_disease_prediction') }}">Heart Disease Prediction</a></li>
+        <li><a href="{{ url_for('cancer_prediction') }}">Cancer Prediction</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
